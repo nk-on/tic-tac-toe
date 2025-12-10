@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -17,6 +19,102 @@
 
 body {
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background-color: var(--charcoal-900);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.start-menu {
+    font-family: "Outfit", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:40px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    color: var(--ice-300);
+    font-size: 10px;
+    width: min(460px, 90vw);
+    min-height: 205px;
+    background-color: var(--charcoal-800);
+    border-radius: 15px;
+    box-shadow: 0 8 px 0 0 #0d1a22;
+    /* darker version of the bg */
+}
+
+.menu .switch {
+    border-radius: 10px;
+    padding: 0 10px;
+    width: 90%;
+    height: 72px;
+    background-color: var(--charcoal-900);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sign {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+}
+
+.oval {
+    border-radius: 10px;
+    width: 198px;
+    height: 54px;
+    background-color: var(--ice-300);
+}
+
+.buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.btn {
+    font-weight: 900;
+    height: 67px;
+    position: relative;
+    padding: 18px 0;
+    font-size: 16px;
+    font-weight: 700;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    color: var(--charcoal-900);
+    text-align: center;
+}
+
+.btn::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 100%;
+    height: 16px;
+    border-radius: 15px;
+    z-index: -1;
+}
+
+.btn-yellow {
+    background: var(--gold-400);
+    box-shadow: inset 0px -8px 0px #CC8B13;
+}
+
+.btn-teal {
+    background: var(--teal-300);
+    box-shadow: inset 0px -8px 0px #118C87;
 }
