@@ -9,4 +9,3 @@ gameStartButton.addEventListener('click',()=>{
     startMenu.classList.remove('visible');
     startMenu.classList.add('hidden');
 })
-console.log('hello world')
