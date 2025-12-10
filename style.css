@@ -26,12 +26,17 @@ body {
     align-items: center;
 }
 
-.start-menu {
-    font-family: "Outfit", sans-serif;
+.hidden {
+    display: none;
+}
+.visible{
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap:40px;
+}
+.start-menu {
+    font-family: "Outfit", sans-serif;
+    gap: 40px;
 }
 
 .menu {
