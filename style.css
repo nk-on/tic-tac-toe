@@ -18,6 +18,7 @@
 }
 
 body {
+    font-family: "Outfit", sans-serif;
     width: 100%;
     height: 100vh;
     background-color: var(--charcoal-900);
@@ -29,13 +30,14 @@ body {
 .hidden {
     display: none;
 }
-.visible{
+
+.visible {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
 .start-menu {
-    font-family: "Outfit", sans-serif;
     gap: 40px;
 }
 
@@ -122,4 +124,58 @@ body {
 .btn-teal {
     background: var(--teal-300);
     box-shadow: inset 0px -8px 0px #118C87;
+}
+
+.game-menu {
+    width: 100%;
+}
+
+.game-heading {
+    width: 30%;
+    height: 30%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.current-player {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-transform: uppercase;
+    color: var(--ice-300);
+    width: 152px;
+    height: 52px;
+    background-color: var(--charcoal-800);
+    box-shadow: inset 0px -4px 0px #10212A;
+    font-weight: 700;
+    font-size: larger;
+    border-radius: 10px;
+}
+
+.restart-button {
+    cursor: pointer;
+    border: none;
+    min-width: 52px;
+    height: 52px;
+    background-color: var(--ice-300);
+    box-shadow: inset 0px -4px 0px #6B8997;
+    border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+    body{
+        display: block;
+    }
+    .game-menu {
+        display: flex;
+        justify-content: end;
+        width: 100%;
+    }
+    .game-heading{
+        padding-top: 20px;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+    }
 }
