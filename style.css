@@ -163,35 +163,75 @@ body {
     box-shadow: inset 0px -4px 0px #6B8997;
     border-radius: 10px;
 }
-.grid-square{
+
+.grid-square {
     width: 140px;
     height: 140px;
     border-radius: 10px;
     background-color: var(--charcoal-800);
     box-shadow: inset 0px -8px 0px #10212A;
 }
-.game-grid{
+
+.game-grid {
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
 }
+
+.scores {
+    width:30%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.score-board {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 140px;
+    height: 72px;
+    border-radius: 15px;
+
+}
+
+.player-score {
+    background-color: var(--teal-500);
+}
+
+.total-ties {
+    background-color: var(--ice-300);
+}
+
+.computer-score {
+    background-color: var(--gold-600);
+}
+
 @media (max-width: 768px) {
-    body{
+    body {
         display: block;
     }
     .game-menu {
         display: flex;
         justify-content: end;
-        width: 100%;
     }
-    .game-heading{
+
+    .game-heading {
         padding-top: 20px;
         width: 100%;
         display: flex;
         justify-content: space-around;
     }
-    .grid-square{
-        width: 96px;
-        height: 96px;
+
+    .grid-square {
+        width: 80px;
+        height: 80px;
+    }
+
+    .scores {
+        width: 90%;
+        display: flex;
+        justify-content: space-between;
+        gap:20px;
     }
 }
