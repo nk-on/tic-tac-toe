@@ -127,6 +127,7 @@ body {
 }
 
 .game-menu {
+    gap: 50px;
     width: 100%;
 }
 
@@ -162,7 +163,18 @@ body {
     box-shadow: inset 0px -4px 0px #6B8997;
     border-radius: 10px;
 }
-
+.grid-square{
+    width: 140px;
+    height: 140px;
+    border-radius: 10px;
+    background-color: var(--charcoal-800);
+    box-shadow: inset 0px -8px 0px #10212A;
+}
+.game-grid{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 20px;
+}
 @media (max-width: 768px) {
     body{
         display: block;
@@ -177,5 +189,9 @@ body {
         width: 100%;
         display: flex;
         justify-content: space-around;
+    }
+    .grid-square{
+        width: 96px;
+        height: 96px;
     }
 }
