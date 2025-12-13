@@ -170,6 +170,14 @@ body {
     border-radius: 10px;
     background-color: var(--charcoal-800);
     box-shadow: inset 0px -8px 0px #10212A;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &>img {
+        width: 63.46px;
+        height: 63.46px;
+    }
 }
 
 .game-grid {
@@ -179,7 +187,7 @@ body {
 }
 
 .scores {
-    width:30%;
+    width: 30%;
     display: flex;
     justify-content: space-between;
 }
@@ -211,6 +219,7 @@ body {
     body {
         display: block;
     }
+
     .game-menu {
         display: flex;
         justify-content: end;
@@ -232,6 +241,6 @@ body {
         width: 90%;
         display: flex;
         justify-content: space-between;
-        gap:20px;
+        gap: 20px;
     }
 }
