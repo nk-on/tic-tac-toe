@@ -2,7 +2,7 @@ const cross = document.getElementById('cross');
 const oval = document.getElementById('oval');
 const gridSquares = document.querySelectorAll('.grid-square');
 const playerSign = document.querySelectorAll('.sign');
-const moves = Array(16).fill(' ');
+const movesHistory = Array(16).fill(' ');
 const signData = [
     {
         signTitle: 'cross',
@@ -21,10 +21,12 @@ function chooseSign(e) {
 }
 function drawSquare(e) {
     const square = e.currentTarget;
+    const id = square.getAttribute('id');
     if (square.innerHTML.length >= 1) return;
-    const {signImage} = currentSign;
+    const {signTitle,signImage} = currentSign;
     square.innerHTML += `<img src="${signImage}" />`;
     currentSign = currentSign === signData[0] ? signData[1] : signData[0];
+    movesHistory[id] = signTitle;
 }
 playerSign.forEach((sign) => {
     sign.addEventListener('click', chooseSign);
