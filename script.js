@@ -3,6 +3,7 @@ const oval = document.getElementById('oval');
 const gridSquares = document.querySelectorAll('.grid-square');
 const playerSign = document.querySelectorAll('.sign');
 const movesHistory = Array(16).fill(' ');
+const currentPlayerSign = document.getElementById('current-player-icon')
 const signData = [
     {
         signTitle: 'cross',
@@ -19,8 +20,12 @@ function chooseSign(e) {
     const id = clickedSquare.getAttribute('id');
     currentSign = signData.find(data => data.signTitle === id);
 }
+function insertCurrentPlayerSign(){
+    currentPlayerSign.setAttribute('src',currentSign.signImage);
+}
 function switchSign(){
     currentSign = currentSign === signData[0] ? signData[1] : signData[0];
+    insertCurrentPlayerSign();
 }
 function saveMove(){
     movesHistory[id] = signTitle;
