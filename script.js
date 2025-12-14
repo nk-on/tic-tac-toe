@@ -25,7 +25,7 @@ function switchSign(){
 function saveMove(){
     movesHistory[id] = signTitle;
 }
-function drawSquare(e) {
+function insertSign(e) {
     const square = e.currentTarget;
     const id = square.getAttribute('id');
     if (square.innerHTML.length >= 1) return;
@@ -38,5 +38,5 @@ playerSign.forEach((sign) => {
     sign.addEventListener('click', chooseSign);
 });
 gridSquares.forEach((square) => {
-    square.addEventListener('click', drawSquare);
+    square.addEventListener('click', insertSign);
 })
