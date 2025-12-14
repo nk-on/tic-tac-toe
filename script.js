@@ -19,14 +19,20 @@ function chooseSign(e) {
     const id = clickedSquare.getAttribute('id');
     currentSign = signData.find(data => data.signTitle === id);
 }
+function switchSign(){
+    currentSign = currentSign === signData[0] ? signData[1] : signData[0];
+}
+function saveMove(){
+    movesHistory[id] = signTitle;
+}
 function drawSquare(e) {
     const square = e.currentTarget;
     const id = square.getAttribute('id');
     if (square.innerHTML.length >= 1) return;
     const {signTitle,signImage} = currentSign;
     square.innerHTML += `<img src="${signImage}" />`;
-    currentSign = currentSign === signData[0] ? signData[1] : signData[0];
-    movesHistory[id] = signTitle;
+    switchSign();
+    saveMove();
 }
 playerSign.forEach((sign) => {
     sign.addEventListener('click', chooseSign);
