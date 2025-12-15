@@ -27,11 +27,11 @@ body {
     align-items: center;
 }
 
-.hidden {
+#hidden {
     display: none;
 }
 
-.visible {
+#visible {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -91,7 +91,7 @@ body {
     gap: 20px;
 }
 
-.btn {
+.buttons button {
     font-weight: 900;
     height: 67px;
     position: relative;
@@ -213,6 +213,72 @@ body {
 
 .computer-score {
     background-color: var(--gold-600);
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 20, 25, 0.6);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.overlay-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 266px;
+    background: #1f3641;
+    padding: 60px 48px;
+}
+
+.subtitle {
+    color: #a8bfc9;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+.overlay-content h1 {
+    color: #31c3bd;
+    margin-bottom: 24px;
+}
+
+.overlay-content h1 span {
+    margin-right: 8px;
+}
+
+.btns {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+}
+
+.btns>.btn {
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 10px;
+
+}
+
+.btn.quit {
+    box-shadow: inset 0px -4px 0px #6B8997;
+    width: 76px;
+    height: 52px;
+    background: #a8bfc9;
+}
+
+.btn.next {
+    width: 146px;
+    height: 52px;
+    background: #f2b137;
+    box-shadow: inset 0px -4px 0px #CC8B13;
 }
 
 @media (max-width: 768px) {

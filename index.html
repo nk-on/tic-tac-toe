@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div class="start-menu visible">
+    <div class="start-menu visible" id="visible">
         <div class="game-logo">
             <img src="assets/cross green.svg" alt="cross-green">
             <img src="assets/Oval orange.svg" alt="oval-orange">
@@ -22,17 +22,17 @@
                 <div class="sign cross" id="cross">
                     <img src="assets/cross grey .svg" alt="cross-grey" id="cross" />
                 </div>
-                <div class="sign oval" id ="oval">
-                    <img src="assets/Oval green.svg" alt="oval-green"  id="oval" />
+                <div class="sign oval" id="oval">
+                    <img src="assets/Oval green.svg" alt="oval-green" id="oval" />
                 </div>
             </div>
         </div>
         <div class="buttons">
-            <button class="btn btn-yellow">NEW GAME (VS CPU)</button>
-            <button class="btn btn-teal">NEW GAME (VS PLAYER)</button>
+            <button class="start-button btn-yellow">NEW GAME (VS CPU)</button>
+            <button class="start-button btn-teal">NEW GAME (VS PLAYER)</button>
         </div>
     </div>
-    <div class="game-menu hidden">
+    <div class="game-menu" id="hidden">
         <div class="game-heading">
             <div class="game-logo">
                 <img src="assets/cross green.svg" alt="cross-green">
@@ -61,6 +61,17 @@
             <div class="score-board computer-score">
                 <p>X (YOU)</p>
                 <h2>0</h2>
+            </div>
+        </div>
+
+        <div class="overlay" id="hidden">
+            <div class="overlay-content">
+                <p class="subtitle">You won</p>
+                <h1><span class="winning-player-container"></span> TAKES THE ROUND</h1>
+                <div class="btns">
+                    <button class="btn quit">Quit</button>
+                    <button class="btn next">Next round</button>
+                </div>
             </div>
         </div>
     </div>
