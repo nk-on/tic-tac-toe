@@ -20,21 +20,21 @@ function chooseSign(e) {
     const id = clickedSquare.getAttribute('id');
     currentSign = signData.find(data => data.signTitle === id);
 }
-function insertCurrentPlayerSign(){
-    currentPlayerSign.setAttribute('src',currentSign.signImage);
+function insertCurrentPlayerSign() {
+    currentPlayerSign.setAttribute('src', currentSign.signImage);
 }
-function switchSign(){
+function switchSign() {
     currentSign = currentSign === signData[0] ? signData[1] : signData[0];
     insertCurrentPlayerSign();
 }
-function saveMove(){
+function saveMove() {
     movesHistory[id] = signTitle;
 }
 function insertSign(e) {
     const square = e.currentTarget;
     const id = square.getAttribute('id');
     if (square.innerHTML.length >= 1) return;
-    const {signTitle,signImage} = currentSign;
+    const { signTitle, signImage } = currentSign;
     square.innerHTML += `<img src="${signImage}" />`;
     switchSign();
     saveMove();
