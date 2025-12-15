@@ -3,6 +3,7 @@ const oval = document.getElementById('oval');
 const gridSquares = document.querySelectorAll('.grid-square');
 const playerSign = document.querySelectorAll('.sign');
 const movesHistory = Array(16).fill(' ');
+console.log(movesHistory)
 const currentPlayerSign = document.getElementById('current-player-icon')
 const signData = [
     {
@@ -27,7 +28,7 @@ function switchSign() {
     currentSign = currentSign === signData[0] ? signData[1] : signData[0];
     insertCurrentPlayerSign();
 }
-function saveMove() {
+function saveMove(id,signTitle) {
     movesHistory[id] = signTitle;
 }
 function insertSign(e) {
@@ -37,7 +38,8 @@ function insertSign(e) {
     const { signTitle, signImage } = currentSign;
     square.innerHTML += `<img src="${signImage}" />`;
     switchSign();
-    saveMove();
+    saveMove(id,signTitle);
+    console.log(movesHistory)
 }
 playerSign.forEach((sign) => {
     sign.addEventListener('click', chooseSign);
