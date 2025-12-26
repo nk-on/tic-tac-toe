@@ -1,5 +1,5 @@
-const cross = document.getElementById('cross');
-const oval = document.getElementById('oval');
+const cross = document.getElementById('X');
+const oval = document.getElementById('O');
 const gridSquares = document.querySelectorAll('.grid-square');
 const playerSign = document.querySelectorAll('.sign');
 const movesHistory = Array(16).fill(' ');
@@ -17,7 +17,8 @@ const signData = [
     }
 ];
 const overlay = document.querySelector('.overlay');
-const overlaySubtitle = document.querySelector('.subtitle')
+const overlaySubtitle = document.querySelector('.subtitle');
+const winnerContainer = document.querySelector('.winning-player-image')
 const winningCombos = [
 
     // Rows
@@ -39,6 +40,10 @@ const winningCombos = [
 ];
 
 let currentSign = signData[0];
+function displayWinnerData(){
+    
+    winnerContainer.setAttribute('src',currentSign.signImage)
+}
 function checkWinner() {
     for (let i = 0; i < winningCombos.length; i++) {
         const winCondition = winningCombos[i];
@@ -49,15 +54,15 @@ function checkWinner() {
         if ((a === b && b === c && d === c) && (a !== ' ' && b !== ' ' && c !== ' ' && d !== ' '
         )) {
             overlay.id = "visible";
+            displayWinnerData();
             return a;
         }
     }
 
 }
-function chooseSign(e) {
+function choosePlayer(e) {
     const clickedSquare = e.currentTarget;
     const id = clickedSquare.getAttribute('id');
-    console.log(id)
     currentSign = signData.find(data => data.signTitle === id);
     
 }
@@ -82,7 +87,7 @@ function insertSign(e) {
     checkWinner();
 }
 playerSign.forEach((sign) => {
-    sign.addEventListener('click', chooseSign);
+    sign.addEventListener('click', choosePlayer);
 });
 gridSquares.forEach((square) => {
     square.addEventListener('click', insertSign);
