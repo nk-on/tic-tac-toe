@@ -57,7 +57,9 @@ function checkWinner() {
 function chooseSign(e) {
     const clickedSquare = e.currentTarget;
     const id = clickedSquare.getAttribute('id');
+    console.log(id)
     currentSign = signData.find(data => data.signTitle === id);
+    
 }
 function insertCurrentPlayerSign() {
     currentPlayerSign.setAttribute('src', currentSign.signImage);
