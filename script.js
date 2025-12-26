@@ -18,7 +18,8 @@ const signData = [
 ];
 const overlay = document.querySelector('.overlay');
 const overlaySubtitle = document.querySelector('.subtitle');
-const winnerContainer = document.querySelector('.winning-player-image')
+const winnerContainer = document.querySelector('.winning-player-image');
+const subTitle = document.querySelector('.subtitle')
 const winningCombos = [
 
     // Rows
@@ -41,7 +42,8 @@ const winningCombos = [
 
 let currentSign = signData[0];
 function displayWinnerData(){
-    
+    const winner = signData.find(element => element.signTitle === checkWinner());
+    subTitle.textContent = winner;
     winnerContainer.setAttribute('src',currentSign.signImage)
 }
 function checkWinner() {
@@ -76,7 +78,8 @@ function switchSign() {
 function saveMove(id, signTitle) {
     movesHistory[id] = signTitle;
 }
-function insertSign(e) {
+function insertSign(e){
+    e.preventDefault();
     const square = e.currentTarget;
     const id = square.getAttribute('id');
     if (square.innerHTML.length >= 1) return;
