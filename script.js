@@ -41,9 +41,9 @@ const winningCombos = [
 ];
 
 let currentSign = signData[0];
-function displayWinnerData(){
-    const winner = signData.find(element => element.signTitle === checkWinner());
-    subTitle.textContent = winner;
+function displayWinnerData(winnerSymbol){
+    const winner = signData.find(element => element.signTitle === winnerSymbol);
+    subTitle.textContent = winner.playerName;
     winnerContainer.setAttribute('src',currentSign.signImage)
 }
 function checkWinner() {
@@ -56,7 +56,7 @@ function checkWinner() {
         if ((a === b && b === c && d === c) && (a !== ' ' && b !== ' ' && c !== ' ' && d !== ' '
         )) {
             overlay.id = "visible";
-            displayWinnerData();
+            displayWinnerData(a);
             return a;
         }
     }
