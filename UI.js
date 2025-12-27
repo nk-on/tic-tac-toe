@@ -13,3 +13,4 @@ for (let i = 0; i < 16; i++) {
     const square = `<div class="grid-square" id=${i}></div>`;
     gameGrid.innerHTML += square
 }
+export {gameMenu,startMenu}

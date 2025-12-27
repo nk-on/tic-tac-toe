@@ -1,3 +1,4 @@
+import { gameMenu, startMenu } from "./UI.js";
 const cross = document.getElementById('X');
 const oval = document.getElementById('O');
 const gridSquares = document.querySelectorAll('.grid-square');
@@ -6,12 +7,12 @@ const movesHistory = Array(16).fill(' ');
 const currentPlayerSign = document.getElementById('current-player-icon')
 const signData = [
     {
-        playerName:'Player 1',
+        playerName: 'Player 1',
         signTitle: 'X',
         signImage: 'assets/cross green.svg'
     },
     {
-        playerName:'Player 2',
+        playerName: 'Player 2',
         signTitle: 'O',
         signImage: 'assets/Oval orange.svg'
     }
@@ -19,11 +20,13 @@ const signData = [
 const overlay = document.querySelector('.overlay');
 const overlaySubtitle = document.querySelector('.subtitle');
 const winnerContainer = document.querySelector('.winning-player-image');
-const subTitle = document.querySelector('.subtitle')
+const subTitle = document.querySelector('.subtitle');
+const quitBtn = document.querySelector('.btn.quit');
+const nextBtn = document.querySelector('.btn.next');
 const winningCombos = [
 
     // Rows
-    [0, 1, 2, 3], 
+    [0, 1, 2, 3],
     [4, 5, 6, 7],
     [8, 9, 10, 11],
     [12, 13, 14, 15],
@@ -41,10 +44,19 @@ const winningCombos = [
 ];
 
 let currentSign = signData[0];
-function displayWinnerData(winnerSymbol){
+function quitGame() {
+    gridSquares.forEach((square) => {
+        square.replaceChildren();
+    });
+    currentSign = signData[0];
+    overlay.id = 'hidden';
+    gameMenu.id = 'hidden';
+    startMenu.id = 'visible';
+}
+function displayWinnerData(winnerSymbol) {
     const winner = signData.find(element => element.signTitle === winnerSymbol);
     subTitle.textContent = winner.playerName;
-    winnerContainer.setAttribute('src',winner.signImage)
+    winnerContainer.setAttribute('src', winner.signImage)
 }
 function checkWinner() {
     for (let i = 0; i < winningCombos.length; i++) {
@@ -66,7 +78,7 @@ function choosePlayer(e) {
     const clickedSquare = e.currentTarget;
     const id = clickedSquare.getAttribute('id');
     currentSign = signData.find(data => data.signTitle === id);
-    
+
 }
 function insertCurrentPlayerSign() {
     currentPlayerSign.setAttribute('src', currentSign.signImage);
@@ -78,7 +90,7 @@ function switchSign() {
 function saveMove(id, signTitle) {
     movesHistory[id] = signTitle;
 }
-function insertSign(e){
+function insertSign(e) {
     e.preventDefault();
     const square = e.currentTarget;
     const id = square.getAttribute('id');
@@ -94,4 +106,5 @@ playerSign.forEach((sign) => {
 });
 gridSquares.forEach((square) => {
     square.addEventListener('click', insertSign);
-})
+});
+quitBtn.addEventListener('click',quitGame);
