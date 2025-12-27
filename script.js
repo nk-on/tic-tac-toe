@@ -1,6 +1,4 @@
 import { gameMenu, startMenu } from "./UI.js";
-const cross = document.getElementById('X');
-const oval = document.getElementById('O');
 const gridSquares = document.querySelectorAll('.grid-square');
 const playerSign = document.querySelectorAll('.sign');
 const movesHistory = Array(16).fill(' ');
@@ -18,7 +16,6 @@ const signData = [
     }
 ];
 const overlay = document.querySelector('.overlay');
-const overlaySubtitle = document.querySelector('.subtitle');
 const winnerContainer = document.querySelector('.winning-player-image');
 const subTitle = document.querySelector('.subtitle');
 const quitBtn = document.querySelector('.btn.quit');
