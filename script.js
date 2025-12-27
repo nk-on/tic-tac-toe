@@ -66,10 +66,10 @@ function displayWinnerData(winnerSymbol) {
 function checkWinner() {
     for (let i = 0; i < winningCombos.length; i++) {
         const winCondition = winningCombos[i];
-        let a = movesHistory[winCondition[0]];
-        let b = movesHistory[winCondition[1]];
-        let c = movesHistory[winCondition[2]];
-        let d = movesHistory[winCondition[3]];
+        const a = movesHistory[winCondition[0]];
+        const b = movesHistory[winCondition[1]];
+        const c = movesHistory[winCondition[2]];
+        const d = movesHistory[winCondition[3]];
         if ((a === b && b === c && d === c) && (a !== ' ' && b !== ' ' && c !== ' ' && d !== ' '
         )) {
             overlay.id = "visible";
@@ -113,4 +113,4 @@ gridSquares.forEach((square) => {
     square.addEventListener('click', insertSign);
 });
 quitBtn.addEventListener('click', quitGame);
-nextBtn.addEventListener('click',startNextRound)
+nextBtn.addEventListener('click', startNextRound)
