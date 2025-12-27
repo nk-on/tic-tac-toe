@@ -44,7 +44,7 @@ let currentSign = signData[0];
 function displayWinnerData(winnerSymbol){
     const winner = signData.find(element => element.signTitle === winnerSymbol);
     subTitle.textContent = winner.playerName;
-    winnerContainer.setAttribute('src',currentSign.signImage)
+    winnerContainer.setAttribute('src',winner.signImage)
 }
 function checkWinner() {
     for (let i = 0; i < winningCombos.length; i++) {
