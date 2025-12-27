@@ -48,6 +48,7 @@ function clear() {
     gridSquares.forEach((square) => {
         square.replaceChildren();
     });
+    movesHistory.fill('')
 }
 function startNextRound() {
     clear();
