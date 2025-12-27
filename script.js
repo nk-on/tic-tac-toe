@@ -44,10 +44,17 @@ const winningCombos = [
 ];
 
 let currentSign = signData[0];
-function quitGame() {
+function clear() {
     gridSquares.forEach((square) => {
         square.replaceChildren();
     });
+}
+function startNextRound() {
+    clear();
+    overlay.id = 'hidden';
+}
+function quitGame() {
+    clear();
     currentSign = signData[0];
     overlay.id = 'hidden';
     gameMenu.id = 'hidden';
@@ -107,4 +114,5 @@ playerSign.forEach((sign) => {
 gridSquares.forEach((square) => {
     square.addEventListener('click', insertSign);
 });
-quitBtn.addEventListener('click',quitGame);
+quitBtn.addEventListener('click', quitGame);
+nextBtn.addEventListener('click',startNextRound)
