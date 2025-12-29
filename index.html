@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic tac toe</title>
     <link rel="stylesheet" href="style.css">
-    <script src="UI.js" defer></script>
-    <script src = "script.js" defer></script>
+    <script type="module" src="UI.js"  defer></script>
+    <script type="module" src="script.js"  defer></script>
 </head>
 
 <body>
-    <div class="start-menu visible">
+    <div class="start-menu visible" id="visible">
         <div class="game-logo">
             <img src="assets/cross green.svg" alt="cross-green">
             <img src="assets/Oval orange.svg" alt="oval-orange">
@@ -19,17 +19,63 @@
         <div class="menu">
             <h1>PICK PLAYER 1’S MARK</h1>
             <div class="switch">
-                <div class="sign cross">
-                    <img src="assets/cross grey .svg" alt="cross-grey" />
+                <div class="sign cross" id="X">
+                    <img src="assets/cross grey .svg" alt="cross-grey" id="cross" />
                 </div>
-                <div class="sign oval">
-                    <img src="assets/Oval green.svg" alt="oval-green" />
+                <div class="sign oval" id="O">
+                    <img src="assets/Oval green.svg" alt="oval-green" id="oval" />
                 </div>
             </div>
         </div>
         <div class="buttons">
-            <button class="btn btn-yellow">NEW GAME (VS CPU)</button>
-            <button class="btn btn-teal">NEW GAME (VS PLAYER)</button>
+            <button class="start-button btn-yellow">NEW GAME (VS CPU)</button>
+            <button class="start-button btn-teal">NEW GAME (VS PLAYER)</button>
+        </div>
+    </div>
+    <div class="game-menu" id="hidden">
+        <div class="game-heading">
+            <div class="game-logo">
+                <img src="assets/cross green.svg" alt="cross-green">
+                <img src="assets/Oval orange.svg" alt="oval-orange">
+            </div>
+            <div class="current-player">
+                <img src="assets/cross grey .svg" alt="current-player-icon" id="current-player-icon">
+                Turn
+            </div>
+            <button class="restart-button">
+                <img src="assets/Redo.svg" alt="Redo" />
+            </button>
+        </div>
+        <div class="game-grid">
+
+        </div>
+        <div class="scores">
+            <div class="score-board player-score">
+                <p>X (YOU)</p>
+                <h2>0</h2>
+            </div>
+            <div class="score-board total-ties">
+                <p>X (YOU)</p>
+                <h2>0</h2>
+            </div>
+            <div class="score-board computer-score">
+                <p>X (YOU)</p>
+                <h2>0</h2>
+            </div>
+        </div>
+
+        <div class="overlay" id="hidden">
+            <div class="overlay-content">
+                <p><span class="subtitle"></span> wins</p>
+                <div class="winner-container">
+                    <img src="" class="winning-player-image" />
+                    <h1> TAKES THE ROUND</h1>
+                </div>
+                <div class="btns">
+                    <button class="btn quit">Quit</button>
+                    <button class="btn next">Next round</button>
+                </div>
+            </div>
         </div>
     </div>
 </body>
