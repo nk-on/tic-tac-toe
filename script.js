@@ -16,7 +16,7 @@ const signData = [
     }
 ];
 const overlay = document.querySelector('.overlay');
-const winnerContainer = document.querySelector('.winning-player-image');
+const winnerContainer = document.querySelector('.winner-container');
 const subTitle = document.querySelector('.subtitle');
 const quitBtn = document.querySelector('.btn.quit');
 const nextBtn = document.querySelector('.btn.next');
@@ -61,7 +61,9 @@ function quitGame() {
 function displayWinnerData(winnerSymbol) {
     const winner = signData.find(element => element.signTitle === winnerSymbol);
     subTitle.textContent = winner.playerName;
-    winnerContainer.setAttribute('src', winner.signImage)
+    const img = document.createElement('img')
+    img.src = winner.signImage;
+    winnerContainer.prepend(img)
 }
 function checkWinner() {
     for (let i = 0; i < winningCombos.length; i++) {
