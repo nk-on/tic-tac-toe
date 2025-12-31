@@ -40,7 +40,9 @@ const winningCombos = [
     [3, 6, 9, 12]
 
 ];
-
+const playerScoreEl = document.querySelector('.player-score h2');
+const totalTiesEl = document.querySelector('.total-ties h2');
+const computerScoreEl = document.querySelector('.computer-score h2');
 let currentSign = signData[0];
 function clear() {
     gridSquares.forEach((square) => {
@@ -59,7 +61,7 @@ function quitGame() {
     gameMenu.id = 'hidden';
     startMenu.id = 'visible';
 }
-function addColor() {
+function addColor(winnerSymbol) {
     if (winnerSymbol === 'O') {
         gameResult.classList.add('oval-icon')
     } else if (winnerSymbol === 'X') {
@@ -81,7 +83,7 @@ function displayWinnerData(winnerSymbol) {
     img.src = winner.signImage;
     winnerContainer.prepend(img);
     gameResult.textContent = 'TAKES THE ROUND';
-    addColor();
+    addColor(winner.signTitle);
 }
 function declareTie() {
     overlay.id = "visible";
