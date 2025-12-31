@@ -20,6 +20,7 @@ const winnerContainer = document.querySelector('.winner-container');
 const subTitle = document.querySelector('.subtitle');
 const quitBtn = document.querySelector('.btn.quit');
 const nextBtn = document.querySelector('.btn.next');
+const gameResult = document.querySelector('.game-result');
 const winningCombos = [
 
     // Rows
@@ -58,12 +59,34 @@ function quitGame() {
     gameMenu.id = 'hidden';
     startMenu.id = 'visible';
 }
+function addColor() {
+    if (winnerSymbol === 'O') {
+        gameResult.classList.add('oval-icon')
+    } else if (winnerSymbol === 'X') {
+        gameResult.classList.remove('oval-icon')
+    }
+}
+function emptyContainer() {
+    if (gameResult.innerHTML.length >= 1) {
+        const imgEl = document.querySelector('.winner-container img');
+        imgEl.remove();
+    }
+}
 function displayWinnerData(winnerSymbol) {
+    emptyContainer();
+    overlay.id = "visible";
     const winner = signData.find(element => element.signTitle === winnerSymbol);
     subTitle.textContent = winner.playerName;
     const img = document.createElement('img')
     img.src = winner.signImage;
-    winnerContainer.prepend(img)
+    winnerContainer.prepend(img);
+    gameResult.textContent = 'TAKES THE ROUND';
+    addColor();
+}
+function declareTie() {
+    overlay.id = "visible";
+    gameResult.textContent = 'ROUND TIED';
+    gameResult.classList.add('tie')
 }
 function checkWinner() {
     for (let i = 0; i < winningCombos.length; i++) {
@@ -74,9 +97,11 @@ function checkWinner() {
         const d = movesHistory[winCondition[3]];
         if ((a === b && b === c && d === c) && (a !== ' ' && b !== ' ' && c !== ' ' && d !== ' '
         )) {
-            overlay.id = "visible";
             displayWinnerData(a);
             return a;
+        }
+        if (!movesHistory.includes(' ')) {
+            declareTie();
         }
     }
 

@@ -203,7 +203,7 @@ body {
 
 }
 
-.player-score {
+.player1-score {
     background-color: var(--teal-500);
 }
 
@@ -211,8 +211,16 @@ body {
     background-color: var(--ice-300);
 }
 
-.computer-score {
+.player2-score {
     background-color: var(--gold-600);
+}
+
+.tie {
+    color: #A8BFC9 !important;
+}
+
+.oval-icon {
+    color: #F2B137 !important;
 }
 
 .overlay {
@@ -249,16 +257,19 @@ body {
     color: #31c3bd;
     margin-bottom: 24px;
 }
-.winner-container{
+
+.winner-container {
     display: flex;
     gap: 15px;
     justify-content: space-between;
     align-items: center;
 }
-.winner-container img{
+
+.winner-container img {
     width: 64px;
     height: 64px;
 }
+
 .overlay-content h1 span {
     margin-right: 8px;
 }
@@ -318,6 +329,7 @@ body {
         width: 80px;
         height: 80px;
     }
+
     .scores {
         width: 90%;
         display: flex;
