@@ -20,7 +20,8 @@ const winnerContainer = document.querySelector('.winner-container');
 const subTitle = document.querySelector('.subtitle');
 const quitBtn = document.querySelector('.btn.quit');
 const nextBtn = document.querySelector('.btn.next');
-const gameResult = document.querySelector('.game-result');
+const gameResult = document.querySelector('.result-title');
+const gameResultContainer = document.querySelector('.game-result'); 
 const winningCombos = [
 
     // Rows
@@ -43,6 +44,7 @@ const winningCombos = [
 const playerScoreEl = document.querySelector('.player1-score h2');
 const totalTiesEl = document.querySelector('.total-ties h2');
 const computerScoreEl = document.querySelector('.player2-score h2');
+const imgEl = document.querySelector('.game-result img');
 let currentSign = signData[0];
 function clear() {
     gridSquares.forEach((square) => {
@@ -78,27 +80,23 @@ function score() {
             scorePlayer2++;
             computerScoreEl.textContent = scorePlayer2
         } else {
-            console.log('i am here')
             scoreTie++;
             totalTiesEl.textContent = scoreTie;
         }
     }
 }
 function emptyContainer() {
-    if (gameResult.innerHTML.length >= 1) {
-        const imgEl = document.querySelector('.winner-container img');
+    if(imgEl){
         imgEl.remove();
     }
 }
 function displayWinnerData(winnerSymbol) {
     const increaseScore = score();
-    emptyContainer();
+    imgEl.setAttribute('src','')
     overlay.id = "visible";
     const winner = signData.find(element => element.signTitle === winnerSymbol);
     subTitle.textContent = winner.playerName;
-    const img = document.createElement('img')
-    img.src = winner.signImage;
-    winnerContainer.prepend(img);
+    imgEl.setAttribute('src',winner.signImage)
     gameResult.textContent = 'TAKES THE ROUND';
     addColor(winner.signTitle);
     increaseScore(winnerSymbol);
@@ -107,6 +105,7 @@ function declareTie() {
     overlay.id = "visible";
     gameResult.textContent = 'ROUND TIED';
     gameResult.classList.add('tie');
+    emptyContainer();
     const increaseScore = score();
     increaseScore();
 }
