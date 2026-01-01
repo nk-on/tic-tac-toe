@@ -40,9 +40,9 @@ const winningCombos = [
     [3, 6, 9, 12]
 
 ];
-const playerScoreEl = document.querySelector('.player-score h2');
+const playerScoreEl = document.querySelector('.player1-score h2');
 const totalTiesEl = document.querySelector('.total-ties h2');
-const computerScoreEl = document.querySelector('.computer-score h2');
+const computerScoreEl = document.querySelector('.player2-score h2');
 let currentSign = signData[0];
 function clear() {
     gridSquares.forEach((square) => {
@@ -68,6 +68,22 @@ function addColor(winnerSymbol) {
         gameResult.classList.remove('oval-icon')
     }
 }
+function score() {
+    let [scorePlayer1, scoreTie, scorePlayer2] = [0, 0, 0];
+    return (winnerSymbol) => {
+        if (winnerSymbol === 'X') {
+            scorePlayer1++;
+            playerScoreEl.textContent = scorePlayer1
+        } else if (winnerSymbol === 'O') {
+            scorePlayer2++;
+            computerScoreEl.textContent = scorePlayer2
+        } else {
+            console.log('i am here')
+            scoreTie++;
+            totalTiesEl.textContent = scoreTie;
+        }
+    }
+}
 function emptyContainer() {
     if (gameResult.innerHTML.length >= 1) {
         const imgEl = document.querySelector('.winner-container img');
@@ -75,6 +91,7 @@ function emptyContainer() {
     }
 }
 function displayWinnerData(winnerSymbol) {
+    const increaseScore = score();
     emptyContainer();
     overlay.id = "visible";
     const winner = signData.find(element => element.signTitle === winnerSymbol);
@@ -84,11 +101,14 @@ function displayWinnerData(winnerSymbol) {
     winnerContainer.prepend(img);
     gameResult.textContent = 'TAKES THE ROUND';
     addColor(winner.signTitle);
+    increaseScore(winnerSymbol);
 }
 function declareTie() {
     overlay.id = "visible";
     gameResult.textContent = 'ROUND TIED';
-    gameResult.classList.add('tie')
+    gameResult.classList.add('tie');
+    const increaseScore = score();
+    increaseScore();
 }
 function checkWinner() {
     for (let i = 0; i < winningCombos.length; i++) {
