@@ -16,12 +16,10 @@ const signData = [
     }
 ];
 const overlay = document.querySelector('.overlay');
-const winnerContainer = document.querySelector('.winner-container');
 const subTitle = document.querySelector('.subtitle');
 const quitBtn = document.querySelector('.btn.quit');
 const nextBtn = document.querySelector('.btn.next');
 const gameResult = document.querySelector('.result-title');
-const gameResultContainer = document.querySelector('.game-result'); 
 const winningCombos = [
 
     // Rows
