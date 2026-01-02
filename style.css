@@ -273,7 +273,12 @@ body {
 .overlay-content h1 span {
     margin-right: 8px;
 }
-
+.game-result{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:10px;
+}
 .btns {
     padding-top: 50px;
     display: flex;
