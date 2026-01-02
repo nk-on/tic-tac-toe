@@ -20,6 +20,7 @@ const subTitle = document.querySelector('.subtitle');
 const quitBtn = document.querySelector('.btn.quit');
 const nextBtn = document.querySelector('.btn.next');
 const gameResult = document.querySelector('.result-title');
+const restartButton = document.querySelector('.restart-button')
 const winningCombos = [
 
     // Rows
@@ -160,3 +161,4 @@ gridSquares.forEach((square) => {
 });
 quitBtn.addEventListener('click', quitGame);
 nextBtn.addEventListener('click', startNextRound)
+restartButton.addEventListener('click',clear)
