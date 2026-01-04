@@ -110,7 +110,8 @@ function declareTie() {
     const increaseScore = score();
     increaseScore();
 }
-function checkWinner() {
+function checkWinner(boardState) {
+    
     for (let i = 0; i < winningCombos.length; i++) {
         const winCondition = winningCombos[i];
         const a = boardState[winCondition[0]];
@@ -153,7 +154,7 @@ function insertSign(e) {
     square.innerHTML += `<img src="${signImage}" />`;
     switchSign();
     saveMove(id, signTitle);
-    checkWinner();
+    checkWinner(boardState);
 }
 playerSign.forEach((sign) => {
     sign.addEventListener('click', choosePlayer);
