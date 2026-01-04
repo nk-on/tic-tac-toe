@@ -1,4 +1,5 @@
 import { gameMenu, startMenu } from "./UI.js";
+import { generateAllStates } from "./gameAgaistComputer.js";
 const gridSquares = document.querySelectorAll('.grid-square');
 const playerSign = document.querySelectorAll('.sign');
 const boardState = Array(16).fill(' ');
@@ -21,25 +22,6 @@ const quitBtn = document.querySelector('.btn.quit');
 const nextBtn = document.querySelector('.btn.next');
 const gameResult = document.querySelector('.result-title');
 const restartButton = document.querySelector('.restart-button')
-const winningCombos = [
-
-    // Rows
-    [0, 1, 2, 3],
-    [4, 5, 6, 7],
-    [8, 9, 10, 11],
-    [12, 13, 14, 15],
-
-    // Columns
-    [0, 4, 8, 12],
-    [1, 5, 9, 13],
-    [2, 6, 10, 14],
-    [3, 7, 11, 15],
-
-    // Diagonals
-    [0, 5, 10, 15],
-    [3, 6, 9, 12]
-
-];
 const playerScoreEl = document.querySelector('.player1-score h2');
 const totalTiesEl = document.querySelector('.total-ties h2');
 const computerScoreEl = document.querySelector('.player2-score h2');
@@ -110,8 +92,26 @@ function declareTie() {
     const increaseScore = score();
     increaseScore();
 }
-function checkWinner(boardState) {
-    
+export function checkWinner(boardState) {
+    const winningCombos = [
+
+        // Rows
+        [0, 1, 2, 3],
+        [4, 5, 6, 7],
+        [8, 9, 10, 11],
+        [12, 13, 14, 15],
+
+        // Columns
+        [0, 4, 8, 12],
+        [1, 5, 9, 13],
+        [2, 6, 10, 14],
+        [3, 7, 11, 15],
+
+        // Diagonals
+        [0, 5, 10, 15],
+        [3, 6, 9, 12]
+
+    ];
     for (let i = 0; i < winningCombos.length; i++) {
         const winCondition = winningCombos[i];
         const a = boardState[winCondition[0]];
@@ -154,6 +154,9 @@ function insertSign(e) {
     square.innerHTML += `<img src="${signImage}" />`;
     switchSign();
     saveMove(id, signTitle);
+    if (gameAgainstComputer) {
+        generateAllStates(boardState);
+    }
     checkWinner(boardState);
 }
 playerSign.forEach((sign) => {
