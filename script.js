@@ -1,7 +1,7 @@
 import { gameMenu, startMenu } from "./UI.js";
 const gridSquares = document.querySelectorAll('.grid-square');
 const playerSign = document.querySelectorAll('.sign');
-const movesHistory = Array(16).fill(' ');
+const boardState = Array(16).fill(' ');
 const currentPlayerSign = document.getElementById('current-player-icon')
 const signData = [
     {
@@ -44,12 +44,14 @@ const playerScoreEl = document.querySelector('.player1-score h2');
 const totalTiesEl = document.querySelector('.total-ties h2');
 const computerScoreEl = document.querySelector('.player2-score h2');
 const imgEl = document.querySelector('.game-result img');
+const newGameVsCpuBtn = document.querySelector('.start-button.btn-yellow');
 let currentSign = signData[0];
+let gameAgainstComputer = false;
 function clear() {
     gridSquares.forEach((square) => {
         square.replaceChildren();
     });
-    movesHistory.fill(' ')
+    boardState.fill(' ')
 }
 function startNextRound() {
     clear();
@@ -85,17 +87,17 @@ function score() {
     }
 }
 function emptyContainer() {
-    if(imgEl){
+    if (imgEl) {
         imgEl.remove();
     }
 }
 function displayWinnerData(winnerSymbol) {
     const increaseScore = score();
-    imgEl.setAttribute('src','')
+    imgEl.setAttribute('src', '')
     overlay.id = "visible";
     const winner = signData.find(element => element.signTitle === winnerSymbol);
     subTitle.textContent = winner.playerName;
-    imgEl.setAttribute('src',winner.signImage)
+    imgEl.setAttribute('src', winner.signImage)
     gameResult.textContent = 'TAKES THE ROUND';
     addColor(winner.signTitle);
     increaseScore(winnerSymbol);
@@ -111,16 +113,16 @@ function declareTie() {
 function checkWinner() {
     for (let i = 0; i < winningCombos.length; i++) {
         const winCondition = winningCombos[i];
-        const a = movesHistory[winCondition[0]];
-        const b = movesHistory[winCondition[1]];
-        const c = movesHistory[winCondition[2]];
-        const d = movesHistory[winCondition[3]];
+        const a = boardState[winCondition[0]];
+        const b = boardState[winCondition[1]];
+        const c = boardState[winCondition[2]];
+        const d = boardState[winCondition[3]];
         if ((a === b && b === c && d === c) && (a !== ' ' && b !== ' ' && c !== ' ' && d !== ' '
         )) {
             displayWinnerData(a);
             return a;
         }
-        if (!movesHistory.includes(' ')) {
+        if (!boardState.includes(' ')) {
             declareTie();
         }
     }
@@ -140,7 +142,7 @@ function switchSign() {
     insertCurrentPlayerSign();
 }
 function saveMove(id, signTitle) {
-    movesHistory[id] = signTitle;
+    boardState[id] = signTitle;
 }
 function insertSign(e) {
     e.preventDefault();
@@ -161,4 +163,7 @@ gridSquares.forEach((square) => {
 });
 quitBtn.addEventListener('click', quitGame);
 nextBtn.addEventListener('click', startNextRound)
-restartButton.addEventListener('click',clear)
+restartButton.addEventListener('click', clear)
+newGameVsCpuBtn.addEventListener('click', () => {
+    gameAgainstComputer = true;
+})
