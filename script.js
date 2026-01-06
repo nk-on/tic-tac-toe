@@ -1,5 +1,5 @@
 import { gameMenu, startMenu } from "./UI.js";
-import { generateAllStates } from "./gameAgaistComputer.js";
+import { minimax } from "./gameAgaistComputer.js";
 const gridSquares = document.querySelectorAll('.grid-square');
 const playerSign = document.querySelectorAll('.sign');
 const boardState = Array(16).fill(' ');
@@ -125,6 +125,7 @@ export function checkWinner(boardState) {
         }
         if (!boardState.includes(' ')) {
             declareTie();
+            return 'tie'
         }
     }
 
@@ -136,7 +137,7 @@ function choosePlayer(e) {
 
 }
 function insertCurrentPlayerSign() {
-    currentPlayerSign.setAttribute('src', currentSign.signImage);
+    currentPlayerSign.setAttribute('src', currentSign.signImage,currentSign.playerName);
 }
 function switchSign() {
     currentSign = currentSign === signData[0] ? signData[1] : signData[0];
@@ -155,10 +156,11 @@ function insertSign(e) {
     switchSign();
     saveMove(id, signTitle);
     if (gameAgainstComputer) {
-        generateAllStates(boardState);
+        const depth = boardState.filter(element => element === ' ').length;
+        let bestMoveIdx = minimax(boardState,depth,cu);
     }
     checkWinner(boardState);
-}
+} 
 playerSign.forEach((sign) => {
     sign.addEventListener('click', choosePlayer);
 });
