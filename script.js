@@ -153,12 +153,12 @@ function insertSign(e) {
     if (square.innerHTML.length >= 1) return;
     const { signTitle, signImage } = currentSign;
     square.innerHTML += `<img src="${signImage}" />`;
-    switchSign();
     saveMove(id, signTitle);
     if (gameAgainstComputer) {
         const depth = boardState.filter(element => element === ' ').length;
-        let bestMoveIdx = minimax(boardState,depth,cu);
+        let bestMoveIdx = minimax(boardState,depth,currentSign.playerName);
     }
+    switchSign();
     checkWinner(boardState);
 } 
 playerSign.forEach((sign) => {
