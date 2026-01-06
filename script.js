@@ -8,12 +8,12 @@ const signData = [
     {
         playerName: 'Player 1',
         signTitle: 'X',
-        signImage: 'assets/cross green.svg'
+        signImage: 'assets/cross green.svg',
     },
     {
         playerName: 'Player 2',
         signTitle: 'O',
-        signImage: 'assets/Oval orange.svg'
+        signImage: 'assets/Oval orange.svg',
     }
 ];
 const overlay = document.querySelector('.overlay');
@@ -38,6 +38,7 @@ function clear() {
 function startNextRound() {
     clear();
     overlay.id = 'hidden';
+    signData.forEach(element => element?.isComputer = !element?.isComputer);
 }
 function quitGame() {
     clear();
@@ -130,12 +131,12 @@ export function checkWinner(boardState) {
     }
 
 }
-function choosePlayer(e) {
-    const clickedSquare = e.currentTarget;
-    const id = clickedSquare.getAttribute('id');
-    currentSign = signData.find(data => data.signTitle === id);
+// function choosePlayer(e) {
+//     const clickedSquare = e.currentTarget;
+//     const id = clickedSquare.getAttribute('id');
+//     currentSign = signData.find(data => data.signTitle === id);
 
-}
+// }
 function insertCurrentPlayerSign() {
     currentPlayerSign.setAttribute('src', currentSign.signImage,currentSign.playerName);
 }
@@ -156,14 +157,14 @@ function insertSign(e) {
     saveMove(id, signTitle);
     if (gameAgainstComputer) {
         const depth = boardState.filter(element => element === ' ').length;
-        let bestMoveIdx = minimax(boardState,depth,currentSign.playerName);
+        let bestMoveIdx = minimax(boardState,depth,currentSign.computerMove);
     }
     switchSign();
     checkWinner(boardState);
 } 
-playerSign.forEach((sign) => {
-    sign.addEventListener('click', choosePlayer);
-});
+// playerSign.forEach((sign) => {
+//     sign.addEventListener('click', choosePlayer);
+// });
 gridSquares.forEach((square) => {
     square.addEventListener('click', insertSign);
 });
