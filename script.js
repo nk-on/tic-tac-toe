@@ -4,16 +4,18 @@ const gridSquares = document.querySelectorAll('.grid-square');
 const playerSign = document.querySelectorAll('.sign');
 const boardState = Array(16).fill(' ');
 const currentPlayerSign = document.getElementById('current-player-icon')
-const signData = [
+let signData = [
     {
         playerName: 'Player 1',
         signTitle: 'X',
         signImage: 'assets/cross green.svg',
+        isComputer:false,
     },
     {
         playerName: 'Player 2',
         signTitle: 'O',
         signImage: 'assets/Oval orange.svg',
+        isComputer:true,
     }
 ];
 const overlay = document.querySelector('.overlay');
@@ -38,7 +40,14 @@ function clear() {
 function startNextRound() {
     clear();
     overlay.id = 'hidden';
-    signData.forEach(element => element?.isComputer = !element?.isComputer);
+    if (gameAgainstComputer) {
+        signData = signData.map(element =>
+            element
+                ? { ...element, isComputer: !element.isComputer }
+                : element
+        );
+    }
+
 }
 function quitGame() {
     clear();
@@ -137,12 +146,11 @@ export function checkWinner(boardState) {
 //     currentSign = signData.find(data => data.signTitle === id);
 
 // }
-function insertCurrentPlayerSign() {
-    currentPlayerSign.setAttribute('src', currentSign.signImage,currentSign.playerName);
-}
+// function insertCurrentPlayerSign() {
+//     currentPlayerSign.setAttribute('src', currentSign.signImage, currentSign.playerName);
+// }
 function switchSign() {
     currentSign = currentSign === signData[0] ? signData[1] : signData[0];
-    insertCurrentPlayerSign();
 }
 function saveMove(id, signTitle) {
     boardState[id] = signTitle;
@@ -153,15 +161,16 @@ function insertSign(e) {
     const id = square.getAttribute('id');
     if (square.innerHTML.length >= 1) return;
     const { signTitle, signImage } = currentSign;
-    square.innerHTML += `<img src="${signImage}" />`;
     saveMove(id, signTitle);
     if (gameAgainstComputer) {
         const depth = boardState.filter(element => element === ' ').length;
-        let bestMoveIdx = minimax(boardState,depth,currentSign.computerMove);
+        const bestMoveIdx = minimax(boardState, depth, currentSign.isComputer);
+        console.log(bestMoveIdx)
     }
     switchSign();
+    square.innerHTML += `<img src="${signImage}" />`;
     checkWinner(boardState);
-} 
+}
 // playerSign.forEach((sign) => {
 //     sign.addEventListener('click', choosePlayer);
 // });
