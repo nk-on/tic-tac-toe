@@ -5,10 +5,12 @@ const movesHistory = Array(16).fill(' ');
 const currentPlayerSign = document.getElementById('current-player-icon')
 const playerData = [
     {
+        playerName:'Player 1',
         playerSymbol: 'X',
         signImage: 'assets/cross green.svg'
     },
     {
+        playerName:'Player 2',
         signTitle: 'O',
         signImage: 'assets/Oval orange.svg'
     }
