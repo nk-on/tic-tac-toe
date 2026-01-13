@@ -3,14 +3,12 @@ const gridSquares = document.querySelectorAll('.grid-square');
 const playerSign = document.querySelectorAll('.sign');
 const movesHistory = Array(16).fill(' ');
 const currentPlayerSign = document.getElementById('current-player-icon')
-const signData = [
+const playerData = [
     {
-        playerName: 'Player 1',
-        signTitle: 'X',
+        playerSymbol: 'X',
         signImage: 'assets/cross green.svg'
     },
     {
-        playerName: 'Player 2',
         signTitle: 'O',
         signImage: 'assets/Oval orange.svg'
     }
@@ -44,7 +42,7 @@ const playerScoreEl = document.querySelector('.player1-score h2');
 const totalTiesEl = document.querySelector('.total-ties h2');
 const computerScoreEl = document.querySelector('.player2-score h2');
 const imgEl = document.querySelector('.game-result img');
-let currentSign = signData[0];
+let currentPlayer = playerData[0];
 function clear() {
     gridSquares.forEach((square) => {
         square.replaceChildren();
@@ -57,7 +55,7 @@ function startNextRound() {
 }
 function quitGame() {
     clear();
-    currentSign = signData[0];
+    currentPlayer = playerData[0];
     overlay.id = 'hidden';
     gameMenu.id = 'hidden';
     startMenu.id = 'visible';
@@ -93,7 +91,7 @@ function displayWinnerData(winnerSymbol) {
     const increaseScore = score();
     imgEl.setAttribute('src','')
     overlay.id = "visible";
-    const winner = signData.find(element => element.signTitle === winnerSymbol);
+    const winner = playerData.find(element => element.signTitle === winnerSymbol);
     subTitle.textContent = winner.playerName;
     imgEl.setAttribute('src',winner.signImage)
     gameResult.textContent = 'TAKES THE ROUND';
@@ -129,14 +127,14 @@ function checkWinner() {
 function choosePlayer(e) {
     const clickedSquare = e.currentTarget;
     const id = clickedSquare.getAttribute('id');
-    currentSign = signData.find(data => data.signTitle === id);
+    currentPlayer = playerData.find(data => data.signTitle === id);
 
 }
 function insertCurrentPlayerSign() {
-    currentPlayerSign.setAttribute('src', currentSign.signImage);
+    currentPlayerSign.setAttribute('src', currentPlayer.signImage);
 }
 function switchSign() {
-    currentSign = currentSign === signData[0] ? signData[1] : signData[0];
+    currentPlayer = currentPlayer === playerData[0] ? playerData[1] : playerData[0];
     insertCurrentPlayerSign();
 }
 function saveMove(id, signTitle) {
@@ -147,7 +145,7 @@ function insertSign(e) {
     const square = e.currentTarget;
     const id = square.getAttribute('id');
     if (square.innerHTML.length >= 1) return;
-    const { signTitle, signImage } = currentSign;
+    const { signTitle, signImage } = currentPlayer;
     square.innerHTML += `<img src="${signImage}" />`;
     switchSign();
 
