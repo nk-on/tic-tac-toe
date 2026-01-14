@@ -5,12 +5,12 @@ const movesHistory = Array(16).fill(' ');
 const currentPlayerSign = document.getElementById('current-player-icon')
 const playerData = [
     {
-        playerName:'Player 1',
+        playerName: 'Player 1',
         playerSymbol: 'X',
         signImage: 'assets/cross green.svg'
     },
     {
-        playerName:'Player 2',
+        playerName: 'Player 2',
         signTitle: 'O',
         signImage: 'assets/Oval orange.svg'
     }
@@ -21,25 +21,6 @@ const quitBtn = document.querySelector('.btn.quit');
 const nextBtn = document.querySelector('.btn.next');
 const gameResult = document.querySelector('.result-title');
 const restartButton = document.querySelector('.restart-button');
-const winningCombos = [
-
-    // Rows
-    [0, 1, 2, 3],
-    [4, 5, 6, 7],
-    [8, 9, 10, 11],
-    [12, 13, 14, 15],
-
-    // Columns
-    [0, 4, 8, 12],
-    [1, 5, 9, 13],
-    [2, 6, 10, 14],
-    [3, 7, 11, 15],
-
-    // Diagonals
-    [0, 5, 10, 15],
-    [3, 6, 9, 12]
-
-];
 const playerScoreEl = document.querySelector('.player1-score h2');
 const totalTiesEl = document.querySelector('.total-ties h2');
 const computerScoreEl = document.querySelector('.player2-score h2');
@@ -85,17 +66,17 @@ function score() {
     }
 }
 function emptyContainer() {
-    if(imgEl){
+    if (imgEl) {
         imgEl.remove();
     }
 }
 function displayWinnerData(winnerSymbol) {
     const increaseScore = score();
-    imgEl.setAttribute('src','')
+    imgEl.setAttribute('src', '')
     overlay.id = "visible";
     const winner = playerData.find(element => element.signTitle === winnerSymbol);
     subTitle.textContent = winner.playerName;
-    imgEl.setAttribute('src',winner.signImage)
+    imgEl.setAttribute('src', winner.signImage)
     gameResult.textContent = 'TAKES THE ROUND';
     addColor(winner.signTitle);
     increaseScore(winnerSymbol);
@@ -110,6 +91,25 @@ function declareTie() {
 }
 function checkWinner() {
     for (let i = 0; i < winningCombos.length; i++) {
+        const winningCombos = [
+
+            // Rows
+            [0, 1, 2, 3],
+            [4, 5, 6, 7],
+            [8, 9, 10, 11],
+            [12, 13, 14, 15],
+
+            // Columns
+            [0, 4, 8, 12],
+            [1, 5, 9, 13],
+            [2, 6, 10, 14],
+            [3, 7, 11, 15],
+
+            // Diagonals
+            [0, 5, 10, 15],
+            [3, 6, 9, 12]
+
+        ];
         const winCondition = winningCombos[i];
         const a = movesHistory[winCondition[0]];
         const b = movesHistory[winCondition[1]];
@@ -162,4 +162,4 @@ gridSquares.forEach((square) => {
 });
 quitBtn.addEventListener('click', quitGame);
 nextBtn.addEventListener('click', startNextRound)
-restartButton.addEventListener('click',clear);
+restartButton.addEventListener('click', clear);
