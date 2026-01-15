@@ -5,11 +5,13 @@ const movesHistory = Array(16).fill(' ');
 const currentPlayerIcon = document.getElementById('current-player-icon')
 const playerData = [
     {
+        isComputer: false,
         playerName: 'Player 1',
         playerSymbol: 'X',
         playerIcon: 'assets/cross green.svg'
     },
     {
+        isComputer: true,
         playerName: 'Player 2',
         playerSymbol: 'O',
         playerIcon: 'assets/Oval orange.svg'
@@ -35,6 +37,7 @@ function clear() {
     movesHistory.fill(' ')
 }
 function startNextRound() {
+    currentPlayer === playerData[0] ? currentPlayer = playerData[1] : currentPlayer = playerData[0];
     clear();
     overlay.id = 'hidden';
 }
@@ -77,7 +80,7 @@ function displayWinnerData(winnerSymbol) {
     imgEl.setAttribute('src', '')
     overlay.id = "visible";
     const winner = playerData.find(element => element.playerSymbol === winnerSymbol);
-    subTitle.textContent = winner.playerName;
+    subTitle.textContent = `${winner.playerName} won the round`;
     imgEl.setAttribute('src', winner.playerIcon)
     gameResult.textContent = 'TAKES THE ROUND';
     addColor(winner.playerIcon);
@@ -134,6 +137,7 @@ function choosePlayer(e) {
     currentPlayer = playerData.find(data => data.playerSymbol === id);
 }
 function switchSign() {
+    playerData.forEach(element => element.isComputer = !element.isComputer)
     currentPlayer = currentPlayer === playerData[0] ? playerData[1] : playerData[0];
     currentPlayerIcon.setAttribute('src', currentPlayer.playerIcon);
 }
@@ -158,8 +162,13 @@ function makeMove(e) {
     square.innerHTML += `<img src="${playerIcon}" />`;
     switchSign();
     if (gameAgainstComputer) {
-        playerData.map((player) => {
-            currentPlayer === player ? player.playerName = 'Computer' : 'You';
+        currentPlayer.playerName = 'Human';
+        playerData.forEach((element) => {
+            if (element.isComputer) {
+                element.playerName = "Computer"
+            } else {
+                element.playerName = "Human"
+            }
         });
         computerMove();
     }
