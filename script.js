@@ -132,20 +132,15 @@ function choosePlayer(e) {
     const clickedSquare = e.currentTarget;
     const id = clickedSquare.getAttribute('id');
     currentPlayer = playerData.find(data => data.signTitle === id);
-
-}
-function insertCurrentPlayerSign() {
-    currentPlayerSign.setAttribute('src', currentPlayer.signImage);
 }
 function switchSign() {
     currentPlayer = currentPlayer === playerData[0] ? playerData[1] : playerData[0];
-    insertCurrentPlayerSign();
+    currentPlayerSign.setAttribute('src', currentPlayer.signImage);
 }
 function computerMove() {
     let randIdx;
     while (true) {
         randIdx = Math.floor(Math.random() * movesHistory.length);
-        console.log(randIdx)
         const { signImage } = currentPlayer;
         if (gridSquares[randIdx].innerHTML.length === 0) {
             gridSquares[randIdx].innerHTML += `<img src="${signImage}" />`;
@@ -154,7 +149,7 @@ function computerMove() {
         }
     }
 }
-function insertSign(e) {
+function makeMove(e) {
     e.preventDefault();
     const square = e.currentTarget;
     const id = square.getAttribute('id');
@@ -178,7 +173,7 @@ playerSign.forEach((sign) => {
     sign.addEventListener('click', choosePlayer);
 });
 gridSquares.forEach((square) => {
-    square.addEventListener('click', insertSign);
+    square.addEventListener('click', makeMove);
 });
 quitBtn.addEventListener('click', quitGame);
 nextBtn.addEventListener('click', startNextRound)
