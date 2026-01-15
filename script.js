@@ -145,15 +145,17 @@ function saveMove(id, signTitle) {
     movesHistory[id] = signTitle;
 }
 function computerMove() {
-    let randIdx = Math.floor(Math.random() * movesHistory.length);
-    if (movesHistory[randIdx] !== ' ') {
-        while (movesHistory[randIdx] !== ' ') {
-            randIdx = Math.floor(Math.random() * movesHistory.length);
+    let randIdx;
+    while (true) {
+        randIdx = Math.floor(Math.random() * movesHistory.length);
+        console.log(randIdx)
+        const { signImage } = currentPlayer;
+        if (gridSquares[randIdx].innerHTML.length === 0) {
+            gridSquares[randIdx].innerHTML += `<img src="${signImage}" />`;
+            switchSign();
+            break
         }
     }
-    const { signImage } = currentPlayer;
-    gridSquares[randIdx].innerHTML = `<img src="${signImage}" />`;
-    switchSign();
 }
 function insertSign(e) {
     e.preventDefault();
@@ -163,7 +165,12 @@ function insertSign(e) {
     const { signTitle, signImage } = currentPlayer;
     square.innerHTML += `<img src="${signImage}" />`;
     switchSign();
-    if (gameAgainstComputer) computerMove();
+    if (gameAgainstComputer) {
+        playerData.map((player) => {
+            currentPlayer === player ? player.playerName = 'Computer' : 'You';
+        });
+        computerMove();
+    }
     saveMove(id, signTitle);
     checkWinner();
 }
