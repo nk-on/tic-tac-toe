@@ -2,17 +2,17 @@ import { gameMenu, startMenu } from "./UI.js";
 const gridSquares = document.querySelectorAll('.grid-square');
 const playerSign = document.querySelectorAll('.sign');
 const movesHistory = Array(16).fill(' ');
-const currentPlayerSign = document.getElementById('current-player-icon')
+const currentPlayerIcon = document.getElementById('current-player-icon')
 const playerData = [
     {
         playerName: 'Player 1',
         playerSymbol: 'X',
-        signImage: 'assets/cross green.svg'
+        playerIcon: 'assets/cross green.svg'
     },
     {
         playerName: 'Player 2',
-        signTitle: 'O',
-        signImage: 'assets/Oval orange.svg'
+        playerSymbol: 'O',
+        playerIcon: 'assets/Oval orange.svg'
     }
 ];
 const overlay = document.querySelector('.overlay');
@@ -76,11 +76,11 @@ function displayWinnerData(winnerSymbol) {
     const increaseScore = score();
     imgEl.setAttribute('src', '')
     overlay.id = "visible";
-    const winner = playerData.find(element => element.signTitle === winnerSymbol);
+    const winner = playerData.find(element => element.playerSymbol === winnerSymbol);
     subTitle.textContent = winner.playerName;
-    imgEl.setAttribute('src', winner.signImage)
+    imgEl.setAttribute('src', winner.playerIcon)
     gameResult.textContent = 'TAKES THE ROUND';
-    addColor(winner.signTitle);
+    addColor(winner.playerIcon);
     increaseScore(winnerSymbol);
 }
 function declareTie() {
@@ -131,19 +131,19 @@ function checkWinner() {
 function choosePlayer(e) {
     const clickedSquare = e.currentTarget;
     const id = clickedSquare.getAttribute('id');
-    currentPlayer = playerData.find(data => data.signTitle === id);
+    currentPlayer = playerData.find(data => data.playerSymbol === id);
 }
 function switchSign() {
     currentPlayer = currentPlayer === playerData[0] ? playerData[1] : playerData[0];
-    currentPlayerSign.setAttribute('src', currentPlayer.signImage);
+    currentPlayerIcon.setAttribute('src', currentPlayer.playerIcon);
 }
 function computerMove() {
     let randIdx;
     while (true) {
         randIdx = Math.floor(Math.random() * movesHistory.length);
-        const { signImage } = currentPlayer;
+        const { playerIcon } = currentPlayer;
         if (gridSquares[randIdx].innerHTML.length === 0) {
-            gridSquares[randIdx].innerHTML += `<img src="${signImage}" />`;
+            gridSquares[randIdx].innerHTML += `<img src="${playerIcon}" />`;
             switchSign();
             break
         }
@@ -154,8 +154,8 @@ function makeMove(e) {
     const square = e.currentTarget;
     const id = square.getAttribute('id');
     if (square.innerHTML.length >= 1) return;
-    const { signTitle, signImage } = currentPlayer;
-    square.innerHTML += `<img src="${signImage}" />`;
+    const { playerSymbol, playerIcon } = currentPlayer;
+    square.innerHTML += `<img src="${playerIcon}" />`;
     switchSign();
     if (gameAgainstComputer) {
         playerData.map((player) => {
@@ -163,7 +163,7 @@ function makeMove(e) {
         });
         computerMove();
     }
-    movesHistory[id] = signTitle;
+    movesHistory[id] = playerSymbol;
     checkWinner();
 }
 newGameVsCpuBtn.addEventListener('click', () => {
