@@ -141,9 +141,6 @@ function switchSign() {
     currentPlayer = currentPlayer === playerData[0] ? playerData[1] : playerData[0];
     insertCurrentPlayerSign();
 }
-function saveMove(id, signTitle) {
-    movesHistory[id] = signTitle;
-}
 function computerMove() {
     let randIdx;
     while (true) {
@@ -171,7 +168,7 @@ function insertSign(e) {
         });
         computerMove();
     }
-    saveMove(id, signTitle);
+    movesHistory[id] = signTitle;
     checkWinner();
 }
 newGameVsCpuBtn.addEventListener('click', () => {
