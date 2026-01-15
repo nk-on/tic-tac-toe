@@ -153,6 +153,7 @@ function computerMove() {
     }
     const { signImage } = currentPlayer;
     gridSquares[randIdx].innerHTML = `<img src="${signImage}" />`;
+    switchSign();
 }
 function insertSign(e) {
     e.preventDefault();
